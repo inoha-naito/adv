@@ -12,12 +12,14 @@ namespace NovelGame
         int _sentenceLength;
         float _time;
         float _feedTime;
+        float _waitTime;
 
         // Start is called before the first frame update
         void Start()
         {
             _time = 0f;
             _feedTime = 0.05f;
+            _waitTime = 0.5f;
 
             string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
             if (GameManager.Instance.userScriptManager.IsStatement(sentence))
@@ -32,19 +34,26 @@ namespace NovelGame
         void Update()
         {
             _time += Time.deltaTime;
-            if (_time >= _feedTime)
+            if (!CanGoToTheNextLine())
             {
-                _time -= _feedTime;
-                if (!CanGoToTheNextLine())
+                if (_time >= _feedTime)
                 {
+                    _time -= _feedTime;
                     _displayedSentenceLength++;
                     _mainTextObject.maxVisibleCharacters = _displayedSentenceLength;
+                }
+            }
+            else
+            {
+                if (_time >= _waitTime)
+                {
+                    _time = _waitTime + Time.deltaTime;
                 }
             }
 
             if (GameManager.Instance.autoScrollEnabled)
             {
-                if (CanGoToTheNextLine())
+                if (CanGoToTheNextLine() && _time > _waitTime)
                 {
                     int count = GameManager.Instance.userScriptManager.GetSentencesCount();
                     if (GameManager.Instance.lineNumber < count - 1)
@@ -58,7 +67,7 @@ namespace NovelGame
             {
                 if (Input.GetMouseButtonUp(0))
                 {
-                    if (CanGoToTheNextLine())
+                    if (CanGoToTheNextLine() && _time > _waitTime)
                     {
                         int count = GameManager.Instance.userScriptManager.GetSentencesCount();
                         if (GameManager.Instance.lineNumber < count - 1)
