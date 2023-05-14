@@ -42,7 +42,7 @@ namespace NovelGame
                 }
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (GameManager.Instance.autoScrollEnabled)
             {
                 if (CanGoToTheNextLine())
                 {
@@ -53,9 +53,24 @@ namespace NovelGame
                         DisplayText();
                     }
                 }
-                else
+            }
+            else
+            {
+                if (Input.GetMouseButtonUp(0))
                 {
-                    _displayedSentenceLength = _sentenceLength;
+                    if (CanGoToTheNextLine())
+                    {
+                        int count = GameManager.Instance.userScriptManager.GetSentencesCount();
+                        if (GameManager.Instance.lineNumber < count - 1)
+                        {
+                            GoToTheNextLine();
+                            DisplayText();
+                        }
+                    }
+                    else
+                    {
+                        _displayedSentenceLength = _sentenceLength;
+                    }
                 }
             }
         }

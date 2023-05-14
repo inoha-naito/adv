@@ -11,6 +11,7 @@ namespace NovelGame
         public UserScriptManager userScriptManager;
         public MainTextController mainTextController;
         public ImageManager imageManager;
+        public bool autoScrollEnabled;
 
         [System.NonSerialized] public int lineNumber;
 
