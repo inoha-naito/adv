@@ -46,8 +46,12 @@ namespace NovelGame
             {
                 if (CanGoToTheNextLine())
                 {
-                    GoToTheNextLine();
-                    DisplayText();
+                    int count = GameManager.Instance.userScriptManager.GetSentencesCount();
+                    if (GameManager.Instance.lineNumber < count - 1)
+                    {
+                        GoToTheNextLine();
+                        DisplayText();
+                    }
                 }
                 else
                 {
@@ -68,16 +72,12 @@ namespace NovelGame
             _displayedSentenceLength = 0;
             _time = 0f;
             _mainTextObject.maxVisibleCharacters = 0;
-            int count = GameManager.Instance.userScriptManager.GetSentencesCount();
-            if (GameManager.Instance.lineNumber < count - 1)
+            GameManager.Instance.lineNumber++;
+            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            if (GameManager.Instance.userScriptManager.IsStatement(sentence))
             {
-                GameManager.Instance.lineNumber++;
-                string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
-                if (GameManager.Instance.userScriptManager.IsStatement(sentence))
-                {
-                    GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
-                    GoToTheNextLine();
-                }
+                GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+                GoToTheNextLine();
             }
         }
 
