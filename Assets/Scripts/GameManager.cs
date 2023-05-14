@@ -8,9 +8,16 @@ namespace NovelGame
     {
         public static GameManager Instance { get; private set; }
 
+        public UserScriptManager userScriptManager;
+        public MainTextController mainTextController;
+
+        [System.NonSerialized] public int lineNumber;
+
         void Awake()
         {
             Instance = this;
+
+            lineNumber = 0;
         }
     }
 }
