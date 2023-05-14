@@ -25,5 +25,10 @@ namespace NovelGame
         {
             return _sentences[GameManager.Instance.lineNumber];
         }
+        
+        public int GetSentencesCount()
+        {
+            return _sentences.Count;
+        }
     }
 }

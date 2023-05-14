@@ -27,7 +27,11 @@ namespace NovelGame
 
         public void GoToTheNextLine()
         {
-            GameManager.Instance.lineNumber++;
+            int count = GameManager.Instance.userScriptManager.GetSentencesCount();
+            if (GameManager.Instance.lineNumber < count - 1)
+            {
+                GameManager.Instance.lineNumber++;
+            }
         }
 
         public void DisplayText()
