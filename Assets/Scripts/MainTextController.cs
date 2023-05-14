@@ -12,6 +12,12 @@ namespace NovelGame
         // Start is called before the first frame update
         void Start()
         {
+            string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+            if (GameManager.Instance.userScriptManager.IsStatement(sentence))
+            {
+                GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+                GoToTheNextLine();
+            }
             DisplayText();
         }
 
@@ -31,6 +37,12 @@ namespace NovelGame
             if (GameManager.Instance.lineNumber < count - 1)
             {
                 GameManager.Instance.lineNumber++;
+                string sentence = GameManager.Instance.userScriptManager.GetCurrentSentence();
+                if (GameManager.Instance.userScriptManager.IsStatement(sentence))
+                {
+                    GameManager.Instance.userScriptManager.ExecuteStatement(sentence);
+                    GoToTheNextLine();
+                }
             }
         }
 

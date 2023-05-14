@@ -30,5 +30,25 @@ namespace NovelGame
         {
             return _sentences.Count;
         }
+
+        public bool IsStatement(string sentence)
+        {
+            if (sentence[0] == '&')
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void ExecuteStatement(string sentence)
+        {
+            string[] words = sentence.Split(' ');
+            switch (words[0])
+            {
+                case "&img":
+                    GameManager.Instance.imageManager.PutImage(words[1], words[2]);
+                    break;
+            }
+        }
     }
 }

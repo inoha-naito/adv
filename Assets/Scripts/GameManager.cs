@@ -10,6 +10,7 @@ namespace NovelGame
 
         public UserScriptManager userScriptManager;
         public MainTextController mainTextController;
+        public ImageManager imageManager;
 
         [System.NonSerialized] public int lineNumber;
 
