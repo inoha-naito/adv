@@ -48,6 +48,9 @@ namespace NovelGame
                 case "&img":
                     GameManager.Instance.imageManager.PutImage(words[1], words[2]);
                     break;
+                case "&rmimg":
+                    GameManager.Instance.imageManager.RemoveImage(words[1]);
+                    break;
             }
         }
     }

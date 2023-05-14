@@ -46,5 +46,10 @@ namespace NovelGame
 
             _textToSpriteObject.Add(imageName, item);
         }
+
+        public void RemoveImage(string imageName)
+        {
+            Destroy(_textToSpriteObject[imageName]);
+        }
     }
 }
