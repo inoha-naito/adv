@@ -585,6 +585,7 @@ MonoBehaviour:
   userScriptManager: {fileID: 2006014790}
   imageManager: {fileID: 57065428}
   autoScrollEnabled: 0
+  recordingEnabled: 0
 --- !u!4 &1127298405
 Transform:
   m_ObjectHideFlags: 0

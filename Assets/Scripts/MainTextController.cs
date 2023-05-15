@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 namespace NovelGame
 {
@@ -79,6 +80,22 @@ namespace NovelGame
                     else
                     {
                         _displayedSentenceLength = _sentenceLength;
+                    }
+                }
+            }
+
+            if (GameManager.Instance.recordingEnabled)
+            {
+                if (GameManager.Instance.recorderController != null)
+                {
+                    if (CanGoToTheNextLine() && _time > _waitTime)
+                    {
+                        int count = GameManager.Instance.userScriptManager.GetSentencesCount();
+                        if (GameManager.Instance.lineNumber == count - 1)
+                        {
+                            GameManager.Instance.recorderController.StopRecording();
+                            EditorApplication.isPlaying = false;
+                        }
                     }
                 }
             }
