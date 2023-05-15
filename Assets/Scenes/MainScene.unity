@@ -583,7 +583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userScriptManager: {fileID: 2006014790}
-  mainTextController: {fileID: 1199201052}
   imageManager: {fileID: 57065428}
   autoScrollEnabled: 0
 --- !u!4 &1127298405

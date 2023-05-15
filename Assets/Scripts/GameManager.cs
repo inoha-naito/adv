@@ -9,7 +9,6 @@ namespace NovelGame
         public static GameManager Instance { get; private set; }
 
         public UserScriptManager userScriptManager;
-        public MainTextController mainTextController;
         public ImageManager imageManager;
         public bool autoScrollEnabled;
 
