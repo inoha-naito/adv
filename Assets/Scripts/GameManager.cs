@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.IO;
 using UnityEngine;
 using UnityEditor.Recorder;
+using UnityEditor.Recorder.Input;
 
 namespace NovelGame
 {
@@ -29,6 +32,13 @@ namespace NovelGame
                 recorderController = new RecorderController(controllerSettings);
 
                 var settings = ScriptableObject.CreateInstance<MovieRecorderSettings>();
+                settings.ImageInputSettings = new GameViewInputSettings
+                {
+                    OutputWidth = 1520,
+                    OutputHeight = 720
+                };
+                var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                settings.OutputFile = Path.Combine(Application.dataPath, "..", "Recordings", timestamp);
                 controllerSettings.AddRecorderSettings(settings);
 
                 recorderController.PrepareRecording();
