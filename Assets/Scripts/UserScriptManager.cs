@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.IO;
 
 namespace NovelGame
@@ -17,6 +18,7 @@ namespace NovelGame
             while (reader.Peek() != -1)
             {
                 string line = reader.ReadLine();
+                line = line.Replace(@"\n", Environment.NewLine);
                 _sentences.Add(line);
             }
         }
